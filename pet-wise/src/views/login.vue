@@ -28,12 +28,18 @@
             <h2 class="text-left mb-8">Bem-vindo de volta ao PetWise!</h2>
             <span class="text-left">
               <field-component
+                v-model="usuario"
                 width="400px"
                 label="Usuário ou E-mail"
                 icone="mdi-account"
               >
               </field-component>
-              <field-component width="400px" label="Senha" icone="mdi-lock">
+              <field-component
+                v-model="senha"
+                width="400px"
+                label="Senha"
+                icone="mdi-lock"
+              >
               </field-component>
               <span class="text-left">
                 <v-btn
@@ -84,14 +90,31 @@
 </template>
 
 <script>
+import { autenticarUsuario } from "./store/index.js";
 export default {
   name: "PaginaLogin",
+  data() {
+    return {
+      usuario: null,
+      senha: null,
+    };
+  },
   methods: {
     voltarInicio() {
       this.$router.push("/");
     },
-    realizarCadastro() {
-      this.$router.push("/pagina_inicial");
+    async realizarCadastro() {
+      const res = await autenticarUsuario(this.usuario, this.senha);
+      window.console.log(res);
+      window.console.log(this.usuario);
+      window.console.log(this.senha);
+      if (res) {
+        this.$router.push("/pagina_inicial");
+      } else {
+        window.console.log(
+          "Registro Não Encontrado ou Usuário ou Senha Inválido"
+        );
+      }
     },
     cadastrarConta() {
       this.$router.push("/cadastrar");

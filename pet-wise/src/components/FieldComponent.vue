@@ -1,6 +1,8 @@
 <template>
   <h5>{{ label }}</h5>
   <v-text-field
+    :value="modelValue"
+    @input="updateValue"
     :width="width"
     variant="solo-filled"
     dense
@@ -42,7 +44,17 @@ defineProps({
     type: String,
     default: "",
   },
+  modelValue: {
+    type: String,
+    default: "",
+  },
 });
+
+const emit = defineEmits(["update:modelValue"]);
+
+const updateValue = (event) => {
+  emit("update:modelValue", event.target.value); // Emitir o valor do campo
+};
 </script>
 
 <style scoped>
