@@ -148,8 +148,6 @@
     </v-row>
     <div class="d-flex flex-wrap" style="margin-left: 150px">
       <card-banho-tosa></card-banho-tosa>
-      <card-banho-tosa></card-banho-tosa>
-      <card-banho-tosa></card-banho-tosa>
     </div>
   </div>
   <div>

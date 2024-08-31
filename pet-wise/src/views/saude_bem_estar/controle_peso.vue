@@ -150,12 +150,6 @@
     </v-row>
     <div class="d-flex flex-wrap" style="margin-left: 150px">
       <card-peso></card-peso>
-      <card-peso></card-peso>
-      <card-peso></card-peso>
-      <card-peso></card-peso>
-      <card-peso></card-peso>
-      <card-peso></card-peso>
-      <card-peso></card-peso>
     </div>
   </div>
   <div>

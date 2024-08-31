@@ -213,7 +213,7 @@ import FieldComponentInserir from "@/components/FieldComponentInserir.vue";
 import ModalLembretes from "@/components/ModalInserir.vue";
 export default {
   components: { CardLembretes, ModalLembretes, FieldComponentInserir },
-  name: "Lembretes",
+  name: "LembretesPagina",
   data() {
     return {
       modalOpen: false,

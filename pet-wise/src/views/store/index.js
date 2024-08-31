@@ -9,16 +9,15 @@ export const autenticarUsuario = async (email, senha) => {
         senha: senha,
       }
     );
-
     if (response.status === 200) {
-      console.log("Autenticação bem-sucedida:", response.data);
+      window.console.log("Autenticação bem-sucedida:", response.data);
       return response.data;
     } else {
-      console.error("Erro na autenticação:", response.status);
+      window.console.error("Erro na autenticação:", response.status);
       return null;
     }
   } catch (error) {
-    console.error("Erro na requisição:", error);
+    window.console.error("Erro na requisição:", error);
     return null;
   }
 };

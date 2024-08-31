@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/home.vue";
 import Funcionalidades from "../views/funcionalidades.vue";
 import PaginaInicial from "../views/pagina_inicial.vue";
+import PaginaInicialPet from "../views/pagina_inicial_pet.vue";
 import Login from "../views/login.vue";
 import Cadastrar from "../views/cadastrar.vue";
 import ControlePeso from "../views/saude_bem_estar/controle_peso.vue";
@@ -25,6 +26,11 @@ const routes = [
     path: "/pagina_inicial",
     name: "pagina_inicial",
     component: PaginaInicial,
+  },
+  {
+    path: "/pagina_inicial_pet",
+    name: "pagina_inicial_pet",
+    component: PaginaInicialPet,
   },
   {
     path: "/login",

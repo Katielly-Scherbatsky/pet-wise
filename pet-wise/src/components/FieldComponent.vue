@@ -1,8 +1,7 @@
 <template>
   <h5>{{ label }}</h5>
   <v-text-field
-    :value="modelValue"
-    @input="updateValue"
+    v-model="internalValue"
     :width="width"
     variant="solo-filled"
     dense
@@ -29,9 +28,9 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, defineEmits, ref, watch } from "vue";
 
-defineProps({
+const props = defineProps({
   label: {
     type: String,
     default: "",
@@ -52,9 +51,11 @@ defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const updateValue = (event) => {
-  emit("update:modelValue", event.target.value); // Emitir o valor do campo
-};
+const internalValue = ref(props.modelValue);
+
+watch(internalValue, (newValue) => {
+  emit("update:modelValue", newValue);
+});
 </script>
 
 <style scoped>

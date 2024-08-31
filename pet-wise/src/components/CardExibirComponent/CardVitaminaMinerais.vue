@@ -15,7 +15,7 @@
         style="position: absolute; transform: translate(-203px, 3px)"
         class="mr-2 gradient-icon"
         size="18"
-        >mdi-weight</v-icon
+        >mdi-pill</v-icon
       >
       <span
         class="mb-1 d-flex justify-space-between"
@@ -34,7 +34,7 @@
         style="position: absolute; transform: translate(-203px, 3px)"
         class="mr-2 gradient-icon"
         size="18"
-        >mdi-calendar-today</v-icon
+        >mdi-pill-multiple</v-icon
       >
       <span
         class="mb-1 d-flex justify-space-between"
@@ -72,7 +72,7 @@
         style="position: absolute; transform: translate(-203px, 3px)"
         class="mr-2 gradient-icon"
         size="18"
-        >mdi-calendar-today</v-icon
+        >mdi-pill</v-icon
       >
       <span
         class="mb-1 d-flex justify-space-between"

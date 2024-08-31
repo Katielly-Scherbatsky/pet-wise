@@ -92,6 +92,7 @@
 <script>
 import { autenticarUsuario } from "./store/index.js";
 export default {
+  
   name: "PaginaLogin",
   data() {
     return {
@@ -104,12 +105,11 @@ export default {
       this.$router.push("/");
     },
     async realizarCadastro() {
-      const res = await autenticarUsuario(this.usuario, this.senha);
-      window.console.log(res);
-      window.console.log(this.usuario);
-      window.console.log(this.senha);
-      if (res) {
-        this.$router.push("/pagina_inicial");
+      const sucesso = await autenticarUsuario(this.usuario, this.senha);
+      localStorage.setItem("usuario", JSON.stringify(sucesso.usuario));
+      localStorage.setItem("token", sucesso.token);
+      if (sucesso) {
+        this.$router.push("/pagina_inicial_pet");
       } else {
         window.console.log(
           "Registro Não Encontrado ou Usuário ou Senha Inválido"
