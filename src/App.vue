@@ -112,7 +112,9 @@
                 color="#00bfae"
                 style="height: 40px; margin-right: 10px"
               >
-                <h1 style="font-size: 14px">{{ nomeAbreviado }}</h1>
+                <h1 style="font-size: 14px; text-transform: uppercase">
+                  {{ nomeAbreviado }}
+                </h1>
               </v-avatar>
               Perfil
             </v-btn>
@@ -143,6 +145,27 @@
                 </h3>
               </v-btn>
             </v-list-item>
+            <v-list-item>
+              <v-btn
+                style="opacity: 1"
+                color="white"
+                variant="plain"
+                :ripple="false"
+                class="text-left"
+                text
+                to="/perfil"
+              >
+                <h3
+                  style="
+                    color: #03202e;
+                    font-size: 11px;
+                    text-transform: capitalize;
+                  "
+                >
+                  Sair
+                </h3>
+              </v-btn>
+            </v-list-item>
           </v-list>
         </v-menu>
       </div>
@@ -156,17 +179,17 @@ import { useRouter, useRoute } from "vue-router";
 import { computed, ref, onMounted } from "vue";
 import logo from "@/assets/pet-wise-logo.png";
 
-const router = useRouter();
 const route = useRoute();
+const router = useRouter();
 
 const navBarNaoUsuario = computed(() => {
   const rotasNavBarNaoUsuario = ["/", "/funcionalidades"];
-  return rotasNavBarNaoUsuario.includes(route.path);
+  return route?.path && rotasNavBarNaoUsuario.includes(route.path);
 });
 
 const semNavBar = computed(() => {
   const rotassemNavBar = ["/login", "/cadastrar"];
-  return rotassemNavBar.includes(route.path);
+  return route?.path && rotassemNavBar.includes(route.path);
 });
 
 function voltarInicio() {
@@ -182,10 +205,17 @@ function extractnomeAbreviado() {
   const user = JSON.parse(localStorage.getItem("usuario"));
   if (user && user.nome) {
     const nomePartes = user.nome.split(" ");
-    const primeiroNome = nomePartes[0] || "";
-    const segundoNome = nomePartes[1] || "";
-    nomeAbreviado.value =
-      (primeiroNome.charAt(0) || "") + (segundoNome.charAt(0) || "");
+    let primeiroNome;
+    if (nomePartes.length === 1) {
+      primeiroNome = nomePartes[0] || "";
+      nomeAbreviado.value =
+        (primeiroNome.charAt(0) || "") + (primeiroNome.charAt(1) || "");
+    } else {
+      primeiroNome = nomePartes[0] || "";
+      const segundoNome = nomePartes[1] || "";
+      nomeAbreviado.value =
+        (primeiroNome.charAt(0) || "") + (segundoNome.charAt(0) || "");
+    }
   }
 }
 

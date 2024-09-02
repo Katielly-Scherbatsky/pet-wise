@@ -2,6 +2,7 @@
   <h5>{{ label }}</h5>
   <v-text-field
     v-model="internalValue"
+    :type="type"
     :width="width"
     variant="solo-filled"
     dense
@@ -42,6 +43,10 @@ const props = defineProps({
   width: {
     type: String,
     default: "",
+  },
+  type: {
+    type: String,
+    default: "text",
   },
   modelValue: {
     type: String,

@@ -28,9 +28,9 @@
             <h2 class="text-left mb-8">Bem-vindo de volta ao PetWise!</h2>
             <span class="text-left">
               <field-component
-                v-model="usuario"
+                v-model="email"
                 width="400px"
-                label="Usuário ou E-mail"
+                label="E-mail"
                 icone="mdi-account"
               >
               </field-component>
@@ -92,11 +92,10 @@
 <script>
 import { autenticarUsuario } from "./store/index.js";
 export default {
-  
   name: "PaginaLogin",
   data() {
     return {
-      usuario: null,
+      email: null,
       senha: null,
     };
   },
@@ -105,11 +104,11 @@ export default {
       this.$router.push("/");
     },
     async realizarCadastro() {
-      const sucesso = await autenticarUsuario(this.usuario, this.senha);
-      localStorage.setItem("usuario", JSON.stringify(sucesso.usuario));
-      localStorage.setItem("token", sucesso.token);
+      const sucesso = await autenticarUsuario(this.email, this.senha);
       if (sucesso) {
-        this.$router.push("/pagina_inicial_pet");
+        setTimeout(() => {
+          this.$router.push("/pagina_inicial_pet");
+        }, 1000);
       } else {
         window.console.log(
           "Registro Não Encontrado ou Usuário ou Senha Inválido"

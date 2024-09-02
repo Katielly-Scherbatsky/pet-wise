@@ -22,7 +22,7 @@
                 src="@/assets/pet-wise-logo.png"
                 alt="Logo Pet Wise"
                 width="150px"
-                @click="voltarInicio()"
+                @click="voltarInicio"
               />
             </v-btn>
             <h2 class="text-left mb-8">
@@ -30,21 +30,31 @@
             </h2>
             <span class="text-left">
               <field-component
+                v-model="nome"
                 width="400px"
-                label="Usuário"
+                label="Nome"
                 icone="mdi-account"
-              >
-              </field-component>
-              <field-component width="400px" label="E-mail" icone="mdi-email">
-              </field-component>
-              <field-component width="400px" label="Senha" icone="mdi-lock">
-              </field-component>
+              ></field-component>
               <field-component
+                v-model="email"
+                width="400px"
+                label="E-mail"
+                icone="mdi-email"
+              ></field-component>
+              <field-component
+                v-model="senha"
+                type="password"
+                width="400px"
+                label="Senha"
+                icone="mdi-lock"
+              ></field-component>
+              <field-component
+                v-model="confirmarSenha"
+                type="password"
                 width="400px"
                 label="Confirmar Senha"
                 icone="mdi-lock"
-              >
-              </field-component>
+              ></field-component>
               <span class="text-left">
                 <v-btn
                   style="
@@ -54,7 +64,7 @@
                     width: 230px;
                   "
                   class="mt-6"
-                  @click="realizarCadastro()"
+                  @click="realizarCadastro"
                 >
                   <h3>Realizar Cadastro</h3>
                 </v-btn>
@@ -64,7 +74,7 @@
                     variant="plain"
                     class="ma-0 pa-0"
                     :ripple="false"
-                    @click="realizarLogin()"
+                    @click="realizarLogin"
                   >
                     <h4 style="color: #00bfae">FAÇA LOGIN AQUI!</h4>
                   </v-btn>
@@ -92,14 +102,34 @@
 </template>
 
 <script>
+import { cadastrarUsuario } from "./store/index.js";
+
 export default {
   name: "PaginaCadastrar",
+  data() {
+    return {
+      nome: "",
+      email: "",
+      senha: "",
+      confirmarSenha: "",
+    };
+  },
   methods: {
     voltarInicio() {
       this.$router.push("/");
     },
-    realizarCadastro() {
-      this.$router.push("/pagina_inicial");
+    async realizarCadastro() {
+      if (this.senha !== this.confirmarSenha) {
+        window.console.error("As senhas não coincidem");
+        return;
+      }
+
+      const result = await cadastrarUsuario(this.nome, this.email, this.senha);
+      if (result) {
+        this.$router.push("/pagina_inicial");
+      } else {
+        window.console.error("Erro ao realizar cadastro");
+      }
     },
     realizarLogin() {
       this.$router.push("/login");
